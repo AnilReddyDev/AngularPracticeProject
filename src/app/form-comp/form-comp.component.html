@@ -1,0 +1,37 @@
+<div class="maincomponent">
+    <div>
+        <form (ngSubmit)="formSubmit()">
+            <label for="name">Name :</label>
+            <input type="text" [(ngModel)]="name" name="ame" id="name"> 
+            <label for="email">Email :</label>
+            <input type="email" [(ngModel)]="email" name="email" id="email"> 
+            <label for="message">Message : </label>
+            <input type="text" [(ngModel)]="message" name="message" id="message"> 
+            <button type="submit">submit</button>
+        </form>
+    </div>
+    <div *ngIf="isSubmitted" class="messageblock">
+        <!-- <table>
+           <thead>
+            <tr>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Message</td>
+            </tr>
+           </thead>
+           <tbody *ngFor="let item of tableList">
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.message}}</td>
+            </tr>
+           </tbody>
+        </table> -->
+        <app-messagecomp
+         *ngFor="let item of tableList;let i=index"
+         [ListItem]="item"
+         [Index]="i"
+         (delete)="deleteListitem($event)"
+         ></app-messagecomp>
+    </div>
+</div>
